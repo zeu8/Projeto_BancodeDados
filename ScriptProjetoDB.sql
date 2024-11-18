@@ -19,7 +19,7 @@ id_membro INT NOT NULL,
 FOREIGN KEY (id_membro) REFERENCES Membros(id_membro)
 );
 
-CREATE TABLE locais (
+CREATE TABLE IF NOT EXISTS locais (
     id_local INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     endereco TEXT,
@@ -27,16 +27,16 @@ CREATE TABLE locais (
     descricao TEXT
 );
 
-CREATE TABLE tipos_eventos (
+CREATE TABLE IF NOT EXISTS tipos_eventos (
     id_tipo INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL
 );
-CREATE TABLE tipos_reunioes (
+CREATE TABLE IF NOT EXISTS tipos_reunioes (
     id_tipo INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE eventos (
+CREATE TABLE IF NOT EXISTS eventos (
     id_evento INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
@@ -48,7 +48,7 @@ CREATE TABLE eventos (
     FOREIGN KEY (id_tipo) REFERENCES tipos_eventos(id_tipo)
 );
 
-CREATE TABLE reunioes (
+CREATE TABLE IF NOT EXISTS reunioes (
     id_reuniao INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
@@ -62,7 +62,7 @@ CREATE TABLE reunioes (
     FOREIGN KEY (id_tipo) REFERENCES tipos_reunioes(id_tipo)
 );
 
-CREATE TABLE ministerio_membros (
+CREATE TABLE IF NOT EXISTS ministerio_membros (
     id_participacao INT AUTO_INCREMENT PRIMARY KEY,
     id_membro INT NOT NULL,
     id_ministerio INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE ministerio_membros (
     FOREIGN KEY (id_ministerio) REFERENCES ministerio(id_ministerio)
 );
 
-CREATE TABLE eventos_participantes (
+CREATE TABLE IF NOT EXISTS eventos_participantes (
     id_participacao INT AUTO_INCREMENT PRIMARY KEY,
     id_evento INT NOT NULL,
     id_membro INT NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE eventos_participantes (
     FOREIGN KEY (id_membro) REFERENCES membros(id_membro)
 );
 
-CREATE TABLE reunioes_participantes (
+CREATE TABLE IF NOT EXISTS reunioes_participantes (
     id_participacao INT AUTO_INCREMENT PRIMARY KEY,
     id_reuniao INT NOT NULL,
     id_membro INT NOT NULL,
